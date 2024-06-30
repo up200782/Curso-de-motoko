@@ -1,0 +1,19 @@
+import Nat "mo:base/Nat";
+import Bool "mo:base/Bool";
+
+actor {
+
+    type Student = {
+        id: Text;
+        firstName: Text;
+        lastName: Text;
+        age: Nat;
+        activo: Bool;
+    };
+
+  
+
+    public func printStudent(student: Student): async Text {
+        return "Student(ID=" # student.id # ", First Name=" # student.firstName # ", Last Name=" # student.lastName # ", Age=" # Nat.toText(student.age) # ", Activo=" # Bool.toText(student.activo) # ")";
+    };
+}
