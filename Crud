@@ -1,0 +1,32 @@
+import Nat "mo:base/Nat";
+import Bool "mo:base/Bool";
+import Array "mo:base/Array";
+
+actor {
+
+    type Student = {
+        id: Text;
+        firstName: Text;
+        lastName: Text;
+        age: Nat;
+        activo: Bool;
+    };
+
+    stable var students: [Student] = [];
+
+    public shared func addStudent(student: Student): async () {
+        students := Array.append<Student>(students, [student]);
+    };
+
+    public query func getAllStudents(): async [Student] {
+        return students;
+    };
+
+    public shared func removeStudent(studentId: Text): async Bool {
+        let initialLength = Array.size(students);
+        students := Array.filter<Student>(students, func (student) : Bool {
+            student.id != studentId
+        });
+        return initialLength != Array.size(students);
+    };
+}
