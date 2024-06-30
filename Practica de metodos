@@ -1,0 +1,18 @@
+import Debug "mo:base/Debug";
+
+actor class NameCanister() = this {
+
+    
+    var name : Text = "Maruchan";
+
+    
+    public func setName(newName: Text) : async () {
+        name := newName;
+        Debug.print("Name set to: " # name);
+    };
+
+    
+    public func getName() : async Text {
+        return name;
+    };
+};
